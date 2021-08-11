@@ -1,0 +1,27 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.page-gallery .gallery-container {
+    display: flex;
+}
+
+body.page-gallery .meme-container {
+    display: none;
+}
+
+body.page-meme .meme-container {
+    display: flex;
+}
+
+body.page-meme .gallery-container {
+    display: none;
+}
+
+body.page-meme .header-panel {
+    display: none;
+}

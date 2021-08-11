@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncle Aviv's Meme Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="init()">
+    <header class="main-header">
+        <section class="header-top d-flex align-items-center justify-content-between">
+            <div>
+                <h1 onclick="renderGallery()" class="logo logo-header">Uncle Aviv's Meme Generator</h1>
+            </div>
+            <nav class="navbar">
+                <a href="#gallery" onclick="renderGallery()" class="nav-item">Gallery</a>
+                <a href="#memes" class="nav-item">Memes</a>
+                <a href="#about" class="nav-item">About</a>
+            </nav>
+        </section>
+        <section class="header-panel d-flex align-items-center justify-content-between">
+            <input type="search" name="search" list="search-tags">
+            <datalist id="search-tags">
+                <option value="funny">
+                <option value="comics">
+                <option value="dogs">
+            </datalist>
+            <div class="tags">
+                <span>funny</span>
+                <span>comics</span>
+                <span>dogs</span>
+                <span>books</span>
+                <span>more...</span>
+            </div>
+        </section>
+    </header>
+    <main class="main-content">
+        <section class="meme-container d-flex justify-content-center ">
+            <div class="canvas-container">
+                <canvas class="meme-canvas"></canvas>
+            </div>
+            <div class="meme-controls">
+                <input type="text" name="txt" onkeyup="onLineUpdate(this)">
+                <input type="range" name="size" onchange="onLineUpdate(this)">
+
+            </div>
+        </section>
+        <section class="gallery-container"></section>
+    </main>
+
+    <footer class="main-footer">
+        <section class="about d-flex align-items-center justify-content-center">
+            <div class="about-img"></div>
+            <div class="about-text">
+                <h3>Aviv Yaari</h3>
+                <p>I'm Aviv</p>
+                <div class="social-btns">
+                    <div class="btn-linkedin"></div>
+                    <div class="btn-facebook"></div>
+                    <div class="btn-github"></div>
+                </div>
+            </div>
+        </section>
+        <section class="copyrights text-center">
+            <h3 class="logo logo-footer">Uncle Aviv's Meme Generator</h3>
+            <p>All rights reserved, 2021</p>
+        </section>
+    </footer>
+
+    <script src="js/app.controller.js"></script>
+    <script src="js/meme.service.js"></script>
+    <script src="js/meme.controller.js"></script>
+</body>
+
+</html>

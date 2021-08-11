@@ -1,0 +1,12 @@
+.header-top {
+  color: white;
+  background-color: #ff7f00;
+}
+
+.logo-header {
+  cursor: pointer;
+}
+
+.header-panel {
+  padding: 1rem 0;
+}
