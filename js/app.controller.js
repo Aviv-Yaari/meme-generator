@@ -1,5 +1,6 @@
 function init() {
-  renderGallery();
+  // renderGallery();
+  renderMemePage(1);
 }
 
 function renderGallery() {
@@ -31,4 +32,12 @@ function renderMemePage(imgId) {
   elCanvasCont.style.width = '400px';
   elCanvasCont.style.height = '400px';
   initCanvas();
+}
+
+function renderToast(message) {
+  const elToast = document.querySelector('.toast');
+  elToast.textContent = message;
+  setTimeout(() => {
+    elToast.textContent = '';
+  }, 1000);
 }

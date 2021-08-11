@@ -38,13 +38,27 @@
         </section>
     </header>
     <main class="main-content">
+        <section class="toast"></section>
         <section class="meme-container d-flex justify-content-center ">
             <div class="canvas-container">
                 <canvas class="meme-canvas"></canvas>
             </div>
             <div class="meme-controls">
                 <input type="text" name="txt" onkeyup="onLineUpdate(this)">
-                <input type="range" name="size" onchange="onLineUpdate(this)">
+                <button class="meme-btn meme-btn-text-inc" onclick="onChangeTextSize('inc')"><img
+                        src="/img/controls/font-inc.png"></button>
+                <button class="meme-btn meme-btn-text-dec" onclick="onChangeTextSize('dec')"><img
+                        src="/img/controls/font-dec.png"></button>
+                <button class="meme-btn meme-btn-up-down" onclick="onLineChange()"><img
+                        src="/img/controls/up-down.png"></button>
+                <button class="meme-btn meme-btn-move-up" onclick="onMoveText('up')"><img
+                        src="/img/controls/move-up.png"></button>
+                <button class="meme-btn meme-btn-move-down" onclick="onMoveText('down')"><img
+                        src="/img/controls/move-down.png"></button>
+                <button class="meme-btn meme-btn-add-line" onclick="onAddLine()"><img
+                        src="/img/controls/add-line.png"></button>
+                <button class="meme-btn meme-btn-remove-line" onclick="onRemoveLine()"><img
+                        src="/img/controls/remove-line.png"></button>
 
             </div>
         </section>
@@ -72,7 +86,8 @@
 
     <script src="js/app.controller.js"></script>
     <script src="js/meme.service.js"></script>
-    <script src="js/meme.controller.js"></script>
+    <script src="js/meme.main-controller.js"></script>
+    <script src="js/meme.inputs-controller.js"></script>
 </body>
 
 </html>

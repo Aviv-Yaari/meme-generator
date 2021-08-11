@@ -12,18 +12,24 @@ let gMeme = {
       size: 30,
       align: 'center',
       color: 'white',
-    },
-    {
-      txt: 'Center Line',
-      size: 20,
-      align: 'center',
-      color: 'white',
+      posX: null,
+      posY: null,
     },
     {
       txt: 'Bottom Line',
       size: 20,
       align: 'center',
       color: 'white',
+      posX: null,
+      posY: null,
+    },
+    {
+      txt: 'Center Line',
+      size: 20,
+      align: 'center',
+      color: 'white',
+      posX: null,
+      posY: null,
     },
   ],
 };
@@ -40,17 +46,42 @@ function getMeme() {
   return gMeme;
 }
 
+function getCurrentLine() {
+  return gMeme.lines[gMeme.selectedLineIdx];
+}
+
 function setMeme(props) {
   gMeme = { ...gMeme, ...props };
   return gMeme;
 }
 
 function selectLine(diff) {
-  gMeme.selectedLineIdx += diff;
+  let newLineIdx = gMeme.selectedLineIdx + diff;
+  if (newLineIdx >= gMeme.lines.length) {
+    newLineIdx = 0;
+  }
+  gMeme.selectedLineIdx = newLineIdx;
 }
 
-function setLine(props) {
-  const { selectedLineIdx } = gMeme;
-  const line = gMeme.lines[selectedLineIdx];
-  gMeme.lines[selectedLineIdx] = { ...line, ...props };
+function updateLine(props, lineIdx = gMeme.selectedLineIdx) {
+  const line = gMeme.lines[lineIdx];
+  gMeme.lines[lineIdx] = { ...line, ...props };
+}
+
+function addLine(props) {
+  const newLine = {
+    txt: '',
+    size: 30,
+    align: 'center',
+    color: 'white',
+    posX: null,
+    posY: null,
+    ...props,
+  };
+  gMeme.lines.push(newLine);
+  gMeme.selectedLineIdx = gMeme.lines.length - 1;
+}
+
+function removeCurrentLine() {
+  gMeme.lines.splice(gMeme.selectedLineIdx, 1);
 }

@@ -1,3 +1,15 @@
 .meme-canvas {
     border: 1px solid black;
 }
+
+.meme-btn {
+    background-color: white;
+    border-radius: 0.5em;
+    width: 4em;
+    height: 4em;
+    cursor: pointer;
+}
+
+.meme-btn img {
+    width: 100%;
+}
