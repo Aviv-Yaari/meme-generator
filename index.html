@@ -65,6 +65,13 @@
                         src="/img/controls/align-center.png"></button>
                 <button class="meme-btn meme-btn-align-right" onclick="onAlign('right')"><img
                         src="/img/controls/align-right.png"></button>
+                <input class="meme-btn" type="color" name="color" onchange="onLineUpdate(this)">
+                <select name="fontFamily" onchange="onLineUpdate(this)">
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Segoe UI">Segoe UI</option>
+                </select>
 
             </div>
         </section>

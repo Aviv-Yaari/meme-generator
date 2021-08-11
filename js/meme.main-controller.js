@@ -36,9 +36,9 @@ function loadText(lines) {
   // const { width: w, height: h } = gElCanvas;
   lines.forEach((line, index) => {
     gCtx.lineWidth = 4;
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = line.color;
-    gCtx.font = `${line.size}px Impact`;
+    gCtx.fillStyle = 'white';
+    gCtx.strokeStyle = line.color;
+    gCtx.font = `${line.size}px ${line.fontFamily}`;
     gCtx.textAlign = line.align;
     gCtx.textBaseline = 'middle';
     gCtx.strokeText(line.txt, line.posX, line.posY);

@@ -1,7 +1,9 @@
 function initInputs() {
-  //   selectLine(0);
   const line = getCurrentLine();
-  const elInputs = Array.from(document.querySelectorAll('.meme-controls > input'));
+  if (!line) return;
+  const elInputs = Array.from(
+    document.querySelectorAll('.meme-controls > input, .meme-controls > select ')
+  );
   for (const elInput of elInputs) {
     elInput.value = line[elInput.name];
   }
@@ -13,7 +15,7 @@ function onLineChange() {
     removeCurrentLine();
     renderToast('Empty line auto-deleted');
   }
-  selectLine(1);
+  selectLine(+1);
   initInputs();
   renderMeme();
 }
@@ -45,9 +47,20 @@ function onMoveText(type) {
 }
 
 function onAddLine() {
+  const { lines } = getMeme();
   const { width: w, height: h } = gElCanvas;
-  const posY = h / 2;
   const posX = w / 2;
+  let posY = h / 2;
+  switch (lines.length) {
+    case 0:
+      posY = 20;
+      break;
+    case 1:
+      posY = h - 20;
+      break;
+    default:
+      break;
+  }
   addLine({ posX, posY });
   initInputs();
   renderMeme();

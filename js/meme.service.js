@@ -11,7 +11,8 @@ let gMeme = {
       txt: 'Top Line',
       size: 30,
       align: 'center',
-      color: 'white',
+      color: '#000000',
+      fontFamily: 'Impact',
       posX: null,
       posY: null,
     },
@@ -19,18 +20,20 @@ let gMeme = {
       txt: 'Bottom Line',
       size: 20,
       align: 'center',
-      color: 'white',
+      color: '#000000',
+      fontFamily: 'Impact',
       posX: null,
       posY: null,
     },
-    {
-      txt: 'Center Line',
-      size: 20,
-      align: 'center',
-      color: 'white',
-      posX: null,
-      posY: null,
-    },
+    // {
+    //   txt: 'Center Line',
+    //   size: 20,
+    //   align: 'center',
+    //   color: 'black',
+    // fontFamily: 'Impact',
+    //   posX: null,
+    //   posY: null,
+    // },
   ],
 };
 
@@ -73,7 +76,8 @@ function addLine(props) {
     txt: '',
     size: 30,
     align: 'center',
-    color: 'white',
+    color: '#000000',
+    fontFamily: 'Impact',
     posX: null,
     posY: null,
     ...props,
@@ -84,4 +88,5 @@ function addLine(props) {
 
 function removeCurrentLine() {
   gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+  selectLine(+1);
 }
