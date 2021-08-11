@@ -1,6 +1,7 @@
 function init() {
   // renderGallery();
   renderMemePage(1);
+  loadMemes();
 }
 
 function renderGallery() {
@@ -22,16 +23,44 @@ function renderGallery() {
   elGallery.innerHTML = strHTML.join('');
 }
 
+function renderSavedMemes() {
+  document.body.className = '';
+  document.body.classList.add('page-saved-memes');
+  const elContainer = document.querySelector('.saved-memes-container');
+
+  let strHTML;
+  const savedMemes = getSavedMemes();
+  strHTML = savedMemes.map((meme, index) => {
+    const img = findImgById(meme.selectedImgId);
+    return `
+    <img src="${meme.previewImgUrl}"
+    alt="${img.name}"
+    width="250"
+    height="250"
+    onclick="renderSavedMemePage(${img.id}, ${index})"
+    oncontextmenu="onSavedMemeRightClick(event, ${index})"
+    >`;
+  });
+  elContainer.innerHTML = strHTML.join('');
+}
+
 function renderMemePage(imgId) {
   document.body.className = '';
   document.body.classList.add('page-meme');
-  setMeme({ selectedImgId: imgId });
+  updateMeme({ selectedImgId: imgId });
   initInputs();
-  // const elCanvasCont = document.querySelector('.canvas-container');
-  // Todo - change to fit more aspect ratios
-  // elCanvasCont.style.width = '400px';
-  // elCanvasCont.style.height = '400px';
   initCanvas();
+}
+
+function renderSavedMemePage(imgId, savedMemeIdx) {
+  setMeme(gSavedMemes[savedMemeIdx]);
+  renderMemePage(imgId);
+}
+
+function onSavedMemeRightClick(ev, savedMemeIdx) {
+  ev.preventDefault();
+  deleteSavedMeme(savedMemeIdx);
+  renderSavedMemes();
 }
 
 function renderToast(message) {

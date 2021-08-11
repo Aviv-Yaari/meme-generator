@@ -69,7 +69,6 @@ function renderBorderAround(line) {
 // Canvas Controls:
 
 function resizeCanvas() {
-  console.log('resize');
   const elContainer = document.querySelector('.canvas-container');
   gElCanvas.width = elContainer.offsetWidth;
   gElCanvas.height = elContainer.offsetWidth;
@@ -80,4 +79,10 @@ function addListeners() {
   window.addEventListener('resize', () => {
     resizeCanvas();
   });
+}
+
+function onSave() {
+  const img = gElCanvas.toDataURL('image/jpeg', 0.1);
+  saveMeme(img);
+  renderToast('Meme Saved!');
 }

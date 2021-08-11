@@ -25,17 +25,10 @@ let gMeme = {
       posX: null,
       posY: null,
     },
-    // {
-    //   txt: 'Center Line',
-    //   size: 20,
-    //   align: 'center',
-    //   color: 'black',
-    // fontFamily: 'Impact',
-    //   posX: null,
-    //   posY: null,
-    // },
   ],
 };
+
+let gSavedMemes = [];
 
 function getImgs() {
   return gImgs;
@@ -49,11 +42,15 @@ function getMeme() {
   return gMeme;
 }
 
+function setMeme(newMeme) {
+  gMeme = newMeme;
+}
+
 function getCurrentLine() {
   return gMeme.lines[gMeme.selectedLineIdx];
 }
 
-function setMeme(props) {
+function updateMeme(props) {
   gMeme = { ...gMeme, ...props };
   return gMeme;
 }
@@ -89,4 +86,26 @@ function addLine(props) {
 function removeCurrentLine() {
   gMeme.lines.splice(gMeme.selectedLineIdx, 1);
   selectLine(+1);
+}
+
+// Saved memes:
+
+function getSavedMemes() {
+  return gSavedMemes;
+}
+
+function loadMemes() {
+  gSavedMemes = loadFromStorage();
+  if (!gSavedMemes) gSavedMemes = [];
+}
+
+function saveMeme(img) {
+  gMeme.previewImgUrl = img;
+  gSavedMemes.push(gMeme);
+  saveToStorage(gSavedMemes);
+}
+
+function deleteSavedMeme(savedMemeIdx) {
+  gSavedMemes.splice(savedMemeIdx, 1);
+  saveToStorage(gSavedMemes);
 }

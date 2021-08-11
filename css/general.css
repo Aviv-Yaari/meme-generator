@@ -6,6 +6,27 @@
     box-sizing: border-box;
 }
 
+body:not(.page-gallery) .gallery-container {
+    display: none;
+}
+
+body:not(.page-gallery) .header-panel {
+    display: none;
+}
+
+body:not(.page-gallery) .about {
+    display: none;
+}
+
+body:not(.page-meme) .meme-container {
+    display: none;
+}
+
+body:not(.page-saved-memes) .saved-memes-container {
+    display: none;
+}
+
+/* 
 body.page-gallery .gallery-container {
     display: flex;
 }
@@ -24,7 +45,7 @@ body.page-meme .gallery-container {
 
 body.page-meme .header-panel {
     display: none;
-}
+} */
 
 button {
     border: none;
