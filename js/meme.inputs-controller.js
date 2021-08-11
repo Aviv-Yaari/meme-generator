@@ -58,3 +58,10 @@ function onRemoveLine() {
   initInputs();
   renderMeme();
 }
+
+function onAlign(direction) {
+  const { width: w, height: h } = gElCanvas;
+  const posXs = { left: 0, center: w / 2, right: w };
+  updateLine({ align: direction, posX: posXs[direction] });
+  renderMeme();
+}

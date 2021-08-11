@@ -8,17 +8,16 @@ function initCanvas() {
   gCtx = gElCanvas.getContext('2d');
   addListeners();
   resizeCanvas();
-  initLinesPositions();
+  renderDefaultLines();
   renderMeme();
 }
 
-function initLinesPositions() {
+function renderDefaultLines() {
   const { lines } = getMeme();
   const { width: w, height: h } = gElCanvas;
   const defaultYs = [20, h - 20, h / 2]; // 20(top) for line 0, h-20(bottom) for line 1, h/2(middle) for line 2
-  const deafultXs = { left: 0, center: w / 2, right: w };
   lines.forEach((line, index) => {
-    updateLine({ posX: deafultXs[line.align], posY: defaultYs[index] }, index);
+    updateLine({ posX: w / 2, posY: defaultYs[index] }, index);
   });
 }
 
@@ -59,18 +58,18 @@ function addBorderAround(line) {
   const bottom = metrics.actualBoundingBoxDescent;
   const height = top - bottom;
   const width = metrics.width;
-  gCtx.strokeRect(line.posX - width / 2 - 5, line.posY + height / 2 - 5, width + 10, -height + 10);
+  // calc the position of the border according to the alignment of the text
+  const calcPosX = { left: 0, center: line.posX - width / 2, right: line.posX - width };
+  gCtx.strokeRect(calcPosX[line.align] - 5, line.posY + height / 2 - 5, width + 10, -height + 10);
 }
 
 // Canvas Controls:
 
 function resizeCanvas() {
   const elContainer = document.querySelector('.canvas-container');
-  //   const data = gCtx.getImageData(0, 0, gElCanvas.width, gElCanvas.height);
   gElCanvas.width = elContainer.offsetWidth - 20;
-  gElCanvas.height = elContainer.offsetHeight - 20;
+  gElCanvas.height = elContainer.offsetWidth - 20;
   renderMeme();
-  //   gCtx.putImageData(data, 0, 0);
 }
 
 function addListeners() {
