@@ -18,7 +18,7 @@ let gMeme = {
     },
     {
       txt: 'Bottom Line',
-      size: 20,
+      size: 30,
       align: 'center',
       color: '#000000',
       fontFamily: 'Impact',

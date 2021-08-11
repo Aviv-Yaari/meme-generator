@@ -21,18 +21,24 @@ function renderDefaultLines() {
   });
 }
 
-function renderMeme() {
+function renderMeme(isExport = false) {
   const meme = getMeme();
   const imgData = findImgById(meme.selectedImgId);
   const elImg = new Image();
   elImg.src = imgData.url;
   elImg.addEventListener('load', () => {
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
-    loadText(meme.lines);
+    loadText(meme.lines, isExport);
+    if (isExport) {
+      const url = gElCanvas.toDataURL('image/jpeg');
+      const elLink = document.querySelector('.download-meme');
+      elLink.href = url;
+      elLink.click();
+    }
   });
 }
 
-function loadText(lines) {
+function loadText(lines, isExport) {
   // const { width: w, height: h } = gElCanvas;
   lines.forEach((line, index) => {
     gCtx.lineWidth = 4;
@@ -43,13 +49,13 @@ function loadText(lines) {
     gCtx.textBaseline = 'middle';
     gCtx.strokeText(line.txt, line.posX, line.posY);
     gCtx.fillText(line.txt, line.posX, line.posY);
-    if (getMeme().selectedLineIdx === index) {
-      addBorderAround(line);
+    if (getMeme().selectedLineIdx === index && !isExport) {
+      renderBorderAround(line);
     }
   });
 }
 
-function addBorderAround(line) {
+function renderBorderAround(line) {
   gCtx.strokeStyle = 'white';
   gCtx.lineWidth = 1;
 
@@ -66,6 +72,7 @@ function addBorderAround(line) {
 // Canvas Controls:
 
 function resizeCanvas() {
+  console.log('resize');
   const elContainer = document.querySelector('.canvas-container');
   gElCanvas.width = elContainer.offsetWidth - 20;
   gElCanvas.height = elContainer.offsetWidth - 20;
@@ -73,7 +80,7 @@ function resizeCanvas() {
 }
 
 function addListeners() {
-  window.addEventListener('resize', () => {
-    resizeCanvas();
-  });
+  // window.addEventListener('resize', () => {
+  //   resizeCanvas();
+  // });
 }
