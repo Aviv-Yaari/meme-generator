@@ -37,24 +37,20 @@ function renderSavedMemes() {
     alt="${img.name}"
     width="250"
     height="250"
-    onclick="renderSavedMemePage(${img.id}, ${index})"
+    onclick="renderMemePage(${img.id}, true, ${index})"
     oncontextmenu="onSavedMemeRightClick(event, ${index})"
     >`;
   });
-  elContainer.innerHTML = strHTML.join('');
+  elContainer.innerHTML = '<p>Right click to delete from saved memes</p>' + strHTML.join('');
 }
 
-function renderMemePage(imgId) {
+function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null) {
   document.body.className = '';
   document.body.classList.add('page-meme');
   updateMeme({ selectedImgId: imgId });
+  if (isSavedMeme) setMeme(gSavedMemes[savedMemeIdx]);
   initInputs();
-  initCanvas();
-}
-
-function renderSavedMemePage(imgId, savedMemeIdx) {
-  setMeme(gSavedMemes[savedMemeIdx]);
-  renderMemePage(imgId);
+  initCanvas(isSavedMeme);
 }
 
 function onSavedMemeRightClick(ev, savedMemeIdx) {

@@ -15,6 +15,7 @@ let gMeme = {
       fontFamily: 'Impact',
       posX: null,
       posY: null,
+      isDragging: false,
     },
     {
       txt: 'Bottom Line',
@@ -24,6 +25,7 @@ let gMeme = {
       fontFamily: 'Impact',
       posX: null,
       posY: null,
+      isDragging: false,
     },
   ],
 };
@@ -53,6 +55,10 @@ function getCurrentLine() {
 function updateMeme(props) {
   gMeme = { ...gMeme, ...props };
   return gMeme;
+}
+
+function setSelectedLine(lineIdx) {
+  gMeme.selectedLineIdx = lineIdx;
 }
 
 function selectLine(diff) {
@@ -101,7 +107,7 @@ function loadMemes() {
 
 function saveMeme(img) {
   gMeme.previewImgUrl = img;
-  gSavedMemes.push(gMeme);
+  gSavedMemes.push({ ...gMeme });
   saveToStorage(gSavedMemes);
 }
 

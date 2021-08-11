@@ -47,6 +47,8 @@ function onMoveText(type) {
 }
 
 function onAddLine() {
+  const { txt } = getCurrentLine();
+  if (!txt) return; // do nothing if theres a selected blank line already
   const { lines } = getMeme();
   const { width: w, height: h } = gElCanvas;
   const posX = w / 2;
@@ -77,4 +79,10 @@ function onAlign(direction) {
   const posXs = { left: 0, center: w / 2, right: w };
   updateLine({ align: direction, posX: posXs[direction] });
   renderMeme();
+}
+
+function onSave() {
+  const img = gElCanvas.toDataURL('image/jpeg', 0.1);
+  saveMeme(img);
+  renderToast('Meme Saved!');
 }
