@@ -1,15 +1,67 @@
+.meme-container {
+    margin: 0 auto;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 40px;
+}
+
+.canvas-container {
+    align-self: center;
+    width: 350px;
+    height: 350px;
+}
+
 .meme-canvas {
     border: 1px solid black;
+}
+
+.meme-controls {
+    flex-direction: column;
+    text-align: center;
+    background-color: gainsboro;
+    padding: 0;
 }
 
 .meme-btn {
     background-color: white;
     border-radius: 0.5em;
-    width: 4em;
-    height: 4em;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+    margin: 10px;
 }
 
 .meme-btn img {
     width: 100%;
+}
+
+.share-button {
+    padding: 10px 16px;
+}
+
+.controls-category {
+    margin-bottom: 16px;
+}
+
+@media (min-width: 740px) {
+    .canvas-container {
+        width: 400px;
+        height: 400px;
+    }
+    .meme-container {
+        flex-direction: row;
+        width: 100vw;
+    }
+    .meme-btn {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .canvas-container {
+        width: 600px;
+        height: 600px;
+    }
 }

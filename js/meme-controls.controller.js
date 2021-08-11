@@ -2,7 +2,7 @@ function initInputs() {
   const line = getCurrentLine();
   if (!line) return;
   const elInputs = Array.from(
-    document.querySelectorAll('.meme-controls > input, .meme-controls > select ')
+    document.querySelectorAll('.meme-controls >* input, .meme-controls >* select ')
   );
   for (const elInput of elInputs) {
     elInput.value = line[elInput.name];

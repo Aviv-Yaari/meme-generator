@@ -27,10 +27,10 @@ function renderMemePage(imgId) {
   document.body.classList.add('page-meme');
   setMeme({ selectedImgId: imgId });
   initInputs();
-  const elCanvasCont = document.querySelector('.canvas-container');
+  // const elCanvasCont = document.querySelector('.canvas-container');
   // Todo - change to fit more aspect ratios
-  elCanvasCont.style.width = '400px';
-  elCanvasCont.style.height = '400px';
+  // elCanvasCont.style.width = '400px';
+  // elCanvasCont.style.height = '400px';
   initCanvas();
 }
 

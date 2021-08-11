@@ -21,7 +21,7 @@ function renderDefaultLines() {
   });
 }
 
-function renderMeme(isExport = false) {
+function renderMeme(isExport = false, after = null) {
   const meme = getMeme();
   const imgData = findImgById(meme.selectedImgId);
   const elImg = new Image();
@@ -29,11 +29,8 @@ function renderMeme(isExport = false) {
   elImg.addEventListener('load', () => {
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
     loadText(meme.lines, isExport);
-    if (isExport) {
-      const url = gElCanvas.toDataURL('image/jpeg');
-      const elLink = document.querySelector('.download-meme');
-      elLink.href = url;
-      elLink.click();
+    if (isExport && after) {
+      after();
     }
   });
 }
@@ -74,13 +71,13 @@ function renderBorderAround(line) {
 function resizeCanvas() {
   console.log('resize');
   const elContainer = document.querySelector('.canvas-container');
-  gElCanvas.width = elContainer.offsetWidth - 20;
-  gElCanvas.height = elContainer.offsetWidth - 20;
+  gElCanvas.width = elContainer.offsetWidth;
+  gElCanvas.height = elContainer.offsetWidth;
   renderMeme();
 }
 
 function addListeners() {
-  // window.addEventListener('resize', () => {
-  //   resizeCanvas();
-  // });
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+  });
 }
