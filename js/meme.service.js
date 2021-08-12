@@ -1,23 +1,26 @@
-const gImgs = [
-  { id: 1, name: 'Angry Trump', url: 'img/1.jpg', keywords: ['angry', 'celeb'] },
-  { id: 2, name: 'Puppies', url: 'img/2.jpg', keywords: ['cute', 'pets'] },
-  { id: 3, name: 'Sleeping Baby and Puppy', url: 'img/3.jpg', keywords: ['baby', 'cute', 'pets'] },
-  { id: 4, name: 'Sleeping Cat', url: 'img/4.jpg', keywords: ['cute', 'pets'] },
-  { id: 5, name: 'Success Baby', url: 'img/5.jpg', keywords: ['baby'] },
-  { id: 6, name: 'Sleeping Baby and Puppy', url: 'img/6.jpg', keywords: ['cute'] },
-  { id: 7, name: 'Surprised Baby', url: 'img/7.jpg', keywords: ['cute', 'funny'] },
-  { id: 8, name: 'Tell Me More Wonka', url: 'img/8.jpg', keywords: ['movies', 'sarcastic'] },
-  { id: 9, name: 'Evil Baby', url: 'img/9.jpg', keywords: ['cute', 'funny', 'baby'] },
-  { id: 10, name: 'Laughing Obame', url: 'img/10.jpg', keywords: ['funny', 'celeb'] },
-  { id: 11, name: 'Kissing Wrestlers', url: 'img/11.jpg', keywords: ['awkward', 'funny'] },
-  { id: 12, name: 'What Would You Do', url: 'img/12.jpg', keywords: ['celeb', 'tv'] },
-  { id: 13, name: 'Dicaprio Raising Glass', url: 'img/13.jpg', keywords: ['party', 'movies'] },
-  { id: 14, name: 'What if I Told You', url: 'img/14.jpg', keywords: ['celeb', 'movies'] },
-  { id: 15, name: 'One Does Not Simply', url: 'img/15.jpg', keywords: ['movies'] },
-  { id: 16, name: 'Laughing Captain', url: 'img/16.jpg', keywords: ['movies', 'funny'] },
-  { id: 17, name: 'Putin Peace', url: 'img/17.jpg', keywords: ['celeb'] },
-  { id: 18, name: 'Look at All', url: 'img/18.jpg', keywords: ['movies'] },
+const IMGS_DB = [
+  { id: 1, name: 'angry trump', url: 'img/1.jpg', keywords: ['angry', 'celeb'] },
+  { id: 2, name: 'puppies', url: 'img/2.jpg', keywords: ['cute', 'pets'] },
+  { id: 3, name: 'sleeping baby and puppy', url: 'img/3.jpg', keywords: ['baby', 'cute', 'pets'] },
+  { id: 4, name: 'sleeping cat', url: 'img/4.jpg', keywords: ['cute', 'pets'] },
+  { id: 5, name: 'success baby', url: 'img/5.jpg', keywords: ['baby'] },
+  { id: 6, name: 'sleeping baby and puppy', url: 'img/6.jpg', keywords: ['cute'] },
+  { id: 7, name: 'surprised baby', url: 'img/7.jpg', keywords: ['cute', 'funny'] },
+  { id: 8, name: 'tell me more wonka', url: 'img/8.jpg', keywords: ['movies', 'sarcastic'] },
+  { id: 9, name: 'evil baby', url: 'img/9.jpg', keywords: ['cute', 'funny', 'baby'] },
+  { id: 10, name: 'laughing obame', url: 'img/10.jpg', keywords: ['funny', 'celeb'] },
+  { id: 11, name: 'kissing wrestlers', url: 'img/11.jpg', keywords: ['awkward', 'funny'] },
+  { id: 12, name: 'what would you do', url: 'img/12.jpg', keywords: ['celeb', 'tv'] },
+  { id: 13, name: 'dicaprio raising glass', url: 'img/13.jpg', keywords: ['party', 'movies'] },
+  { id: 14, name: 'what if i told you', url: 'img/14.jpg', keywords: ['celeb', 'movies'] },
+  { id: 15, name: 'one does not simply', url: 'img/15.jpg', keywords: ['movies'] },
+  { id: 16, name: 'laughing captain', url: 'img/16.jpg', keywords: ['movies', 'funny'] },
+  { id: 17, name: 'putin peace', url: 'img/17.jpg', keywords: ['celeb'] },
+  { id: 18, name: 'look at all', url: 'img/18.jpg', keywords: ['movies'] },
 ];
+
+let gSearchScores = { funny: 5, celeb: 10, movies: 4 };
+let gImgs = IMGS_DB;
 let gMeme = {
   selectedImgId: 1,
   selectedLineIdx: 0,
@@ -49,6 +52,10 @@ let gSavedMemes = [];
 
 function getImgs() {
   return gImgs;
+}
+
+function setImgs(newImgs) {
+  gImgs = newImgs;
 }
 
 function findImgById(id) {
@@ -109,8 +116,7 @@ function removeCurrentLine() {
   selectLine(+1);
 }
 
-// Saved memes:
-
+//#region Saved memes
 function getSavedMemes() {
   return gSavedMemes;
 }
@@ -130,3 +136,30 @@ function deleteSavedMeme(savedMemeIdx) {
   gSavedMemes.splice(savedMemeIdx, 1);
   saveToStorage(gSavedMemes);
 }
+//#endregion Saved memes
+
+//#region Search
+
+function getSearchScores() {
+  return gSearchScores;
+}
+
+function incSearchScore(search) {
+  if (!search) return;
+  if (!gSearchScores[search]) gSearchScores[search] = 0;
+  gSearchScores[search]++;
+}
+
+function filterImgs(search) {
+  if (!search) {
+    return IMGS_DB;
+  }
+  const searchToLower = search.toLowerCase();
+  return gImgs.filter(
+    (img) =>
+      img.name.includes(searchToLower) ||
+      img.keywords.some((keyword) => keyword.includes(searchToLower))
+  );
+}
+
+//#endregion Search

@@ -4,13 +4,13 @@ function init() {
   loadMemes();
 }
 
-function renderGallery() {
+function renderGallery(imgs = getImgs()) {
+  renderTags();
   document.body.className = '';
   document.body.classList.add('page-gallery');
   const elGallery = document.querySelector('.gallery-container');
 
   let strHTML;
-  const imgs = getImgs();
   strHTML = imgs.map(
     (img) => `
     <img src="${img.url}"
@@ -42,6 +42,8 @@ function renderSavedMemes() {
 }
 
 function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null) {
+  const search = document.querySelector('.search-input').value;
+  incSearchScore(search.toLowerCase());
   document.body.className = '';
   document.body.classList.add('page-meme');
   updateMeme({ selectedImgId: imgId });
@@ -71,4 +73,20 @@ function onNavBtnClick(elBtn, func) {
   }
   elBtn.classList.add('clicked');
   func();
+}
+
+function onSearch(elSearch) {
+  const { value } = elSearch;
+  renderGallery(filterImgs(value));
+}
+
+function renderTags() {
+  const elTagsCont = document.querySelector('.tags-container');
+  const tags = getSearchScores();
+  let strHTML = '';
+  for (const tag in tags) {
+    const score = tags[tag];
+    strHTML += `<span style="font-size:${score * 5}px;">${tag}</span>`;
+  }
+  elTagsCont.innerHTML = strHTML;
 }
