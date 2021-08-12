@@ -1,8 +1,10 @@
 let gSearchScores = SEARCH_SCORES_INIT;
-let gImgs = IMGS_DB;
+let gImgs = loadFromStorage('imgs') || IMGS_DB;
 let gMeme = MEME_INIT;
 let gTagsToDisp = 3;
 let gSavedMemes = [];
+
+//#region images
 
 function getImgs() {
   return gImgs;
@@ -10,11 +12,14 @@ function getImgs() {
 
 function setImgs(newImgs) {
   gImgs = newImgs;
+  saveToStorage('imgs', gImgs);
 }
 
 function findImgById(id) {
   return gImgs.find((img) => img.id === id);
 }
+
+//#endregion images
 
 function getMeme() {
   return gMeme;
@@ -76,19 +81,19 @@ function getSavedMemes() {
 }
 
 function loadMemes() {
-  gSavedMemes = loadFromStorage();
+  gSavedMemes = loadFromStorage('saved-memes');
   if (!gSavedMemes) gSavedMemes = [];
 }
 
 function saveMeme(img) {
   gMeme.previewImgUrl = img;
   gSavedMemes.push({ ...gMeme });
-  saveToStorage(gSavedMemes);
+  saveToStorage('saved-memes', gSavedMemes);
 }
 
 function deleteSavedMeme(savedMemeIdx) {
   gSavedMemes.splice(savedMemeIdx, 1);
-  saveToStorage(gSavedMemes);
+  saveToStorage('saved-memes', gSavedMemes);
 }
 //#endregion Saved memes
 

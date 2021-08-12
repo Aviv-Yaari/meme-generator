@@ -14,10 +14,10 @@ function renderGallery(imgs = getImgs()) {
     (img) => `
     <img src="${img.url}"
     alt="${img.name}"
-    onclick="renderMemePage(${img.id})"
+    onclick="renderMemePage('${img.id}')"
     >`
   );
-  const strHTMLUpload = `<input class="input-upload" type="file" onclick="OnUploadImg()" hidden />
+  const strHTMLUpload = `<input onchange="loadImage(event, addCustomMeme)" class="input-upload" type="file" hidden />
   <img src="img/upload.jpg" class="upload-img" onclick="document.querySelector('.input-upload').click()">`;
   elGallery.innerHTML = strHTMLUpload + strHTML.join('');
 }
@@ -34,7 +34,7 @@ function renderSavedMemes() {
     return `
     <img src="${meme.previewImgUrl}"
     alt="${img.name}"
-    onclick="renderMemePage(${img.id}, true, ${index})"
+    onclick="renderMemePage('${img.id}', true, ${index})"
     oncontextmenu="onSavedMemeRightClick(event, ${index})"
     >`;
   });
@@ -42,7 +42,7 @@ function renderSavedMemes() {
   elContainer.innerHTML = strHTML.join('');
 }
 
-function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null) {
+function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null, isCustomMeme = false) {
   const elSearch = document.querySelector('.search-input');
   incSearchScore(elSearch.value.toLowerCase());
   elSearch.value = '';
@@ -60,13 +60,13 @@ function onSavedMemeRightClick(ev, savedMemeIdx) {
   renderSavedMemes();
 }
 
-function renderToast(message) {
+function renderToast(message, timeout = 2000) {
   const elToast = document.querySelector('.toast');
   elToast.hidden = false;
   elToast.textContent = message;
   setTimeout(() => {
     elToast.hidden = true;
-  }, 2000);
+  }, timeout);
 }
 
 function onNavBtnClick(elBtn, func) {

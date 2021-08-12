@@ -1,10 +1,8 @@
-const KEY = 'saved-memes';
-
-function saveToStorage(savedMemes) {
-  localStorage.setItem(KEY, JSON.stringify(savedMemes));
+function saveToStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
-function loadFromStorage() {
-  const data = localStorage.getItem(KEY);
+function loadFromStorage(key) {
+  const data = localStorage.getItem(key);
   return JSON.parse(data);
 }

@@ -40,6 +40,9 @@ const IMGS_DB = [
   },
   { id: 25, name: 'dr evil quote', url: 'img/memes/25.jpg', keywords: ['movies'] },
 ];
+for (const img of IMGS_DB) {
+  img.id = makeId();
+}
 
 const MEME_INIT = {
   selectedImgId: 1,
