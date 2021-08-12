@@ -93,19 +93,22 @@
     </main>
 
     <footer class="main-footer">
-        <section id="about" class="about d-flex align-items-center justify-content-center main-container">
-            <div class="about-img">
-                <img src="img/me.jpg" alt="">
-            </div>
-            <div class="about-text">
-                <h3>Aviv Yaari</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit non, at temporibus ab corporis
-                    suscipit ratione dolore quibusdam asperiores nihil? Inventore quia hic fuga aperiam error nulla
-                    perspiciatis veritatis reprehenderit.</p>
-                <div class="social-btns">
-                    <div class="btn-linkedin"></div>
-                    <div class="btn-facebook"></div>
-                    <div class="btn-github"></div>
+        <section id="about" class="about-container d-flex">
+            <div class="about d-flex">
+                <div class="about-img">
+                    <img src="img/me.jpg" alt="">
+                </div>
+                <div class="about-text">
+                    <h3>So...</h3>
+                    <p>If you enjoyed this app, check out some other stuff I made:</p>
+                    <div class="about-social">
+                        <img onclick="onAboutBtnClick('linkedin')" class="btn-linkedin" src="img/linkedin-logo.png"
+                            alt="linkedin-logo">
+                        <img onclick="onAboutBtnClick('facebook')" class="btn-facebook" src="img/facebook-logo.png"
+                            alt="facebook-logo">
+                        <img onclick="onAboutBtnClick('github')" class="btn-github" src="img/github-logo.png"
+                            alt="github-logo">
+                    </div>
                 </div>
             </div>
         </section>

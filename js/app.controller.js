@@ -102,3 +102,12 @@ function onLessMoreClick(num) {
   loadTags(num);
   renderTags();
 }
+
+function onAboutBtnClick(type) {
+  const urls = {
+    facebook: 'https://www.facebook.com/aviv.yaari/',
+    linkedin: 'https://www.linkedin.com/in/aviv-yaari-8a797a197/',
+    github: 'https://github.com/Aviv-Yaari/',
+  };
+  window.open(urls[type], '_blank');
+}
