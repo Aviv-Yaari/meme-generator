@@ -1,6 +1,31 @@
 let gSearchScores = SEARCH_SCORES_INIT;
 let gImgs = loadFromStorage('imgs') || IMGS_DB;
-let gMeme = MEME_INIT;
+let gMeme = {
+  selectedImgId: 1,
+  selectedLineIdx: 0,
+  lines: [
+    {
+      txt: 'Top Line',
+      size: 30,
+      align: 'center',
+      color: '#000000',
+      fontFamily: 'Impact',
+      posX: null,
+      posY: null,
+      isDragging: false,
+    },
+    {
+      txt: 'Bottom Line',
+      size: 30,
+      align: 'center',
+      color: '#000000',
+      fontFamily: 'Impact',
+      posX: null,
+      posY: null,
+      isDragging: false,
+    },
+  ],
+};
 let gTagsToDisp = 3;
 let gSavedMemes = [];
 

@@ -41,6 +41,10 @@
     background-color: #ff7f00;
 }
 
+.main-footer {
+    margin-top: auto;
+}
+
 @media (min-width: 740px) {
     .about {
         flex-direction: row;

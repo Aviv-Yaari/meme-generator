@@ -48,7 +48,35 @@ function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null, isCusto
   elSearch.value = '';
   document.body.className = '';
   document.body.classList.add('page-meme');
-  updateMeme({ selectedImgId: imgId });
+  // Had to repeat myself here in declaring the meme default (also declared in meme service),
+  // could not find a better solution that wasnt messier.
+  const memeDefault = {
+    selectedImgId: 1,
+    selectedLineIdx: 0,
+    lines: [
+      {
+        txt: 'Top Line',
+        size: 30,
+        align: 'center',
+        color: '#000000',
+        fontFamily: 'Impact',
+        posX: null,
+        posY: null,
+        isDragging: false,
+      },
+      {
+        txt: 'Bottom Line',
+        size: 30,
+        align: 'center',
+        color: '#000000',
+        fontFamily: 'Impact',
+        posX: null,
+        posY: null,
+        isDragging: false,
+      },
+    ],
+  };
+  updateMeme({ ...memeDefault, selectedImgId: imgId });
   if (isSavedMeme) setMeme(gSavedMemes[savedMemeIdx]);
   initInputs();
   initCanvas(isSavedMeme);

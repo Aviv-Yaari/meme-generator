@@ -7,6 +7,12 @@ html {
     font-size: 16px;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 h1, h2, h3, body {
     margin: 0;
     padding: 0;
@@ -22,7 +28,7 @@ body:not(.page-gallery) .header-panel {
     display: none;
 }
 
-body:not(.page-gallery) .about {
+body:not(.page-gallery) .about-container {
     display: none;
 }
 

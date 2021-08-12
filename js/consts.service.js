@@ -14,7 +14,7 @@ const IMGS_DB = [
   { id: 8, name: 'tell me more wonka', url: 'img/memes/8.jpg', keywords: ['movies', 'sarcastic'] },
   { id: 9, name: 'evil baby', url: 'img/memes/9.jpg', keywords: ['cute', 'funny', 'baby'] },
   { id: 10, name: 'laughing obama', url: 'img/memes/10.jpg', keywords: ['funny', 'politics'] },
-  { id: 11, name: 'kissing wrestlers', url: 'img/memes/11.jpg', keywords: ['awkward', 'funny'] },
+  { id: 11, name: 'kissing guys', url: 'img/memes/11.jpg', keywords: ['nohomo', 'funny'] },
   { id: 12, name: 'what would you do', url: 'img/memes/12.jpg', keywords: ['celeb', 'tv'] },
   {
     id: 13,
@@ -73,9 +73,10 @@ const MEME_INIT = {
 
 const SEARCH_SCORES_INIT = {
   funny: 5,
-  pets: 10,
+  custom: 10,
+  pets: 7,
   movies: 4,
-  trump: 12,
+  trump: 6,
   politics: 5,
   tv: 4,
   obama: 4,
