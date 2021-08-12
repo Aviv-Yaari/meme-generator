@@ -58,9 +58,9 @@ select.meme-font-family {
     gap: 10px;
 }
 
-@media (min-width: 740px) {
+@media (min-width: 850px) {
     .canvas-container {
-        width: 500px;
+        width: 450px;
     }
     .meme-container {
         flex-direction: row;
