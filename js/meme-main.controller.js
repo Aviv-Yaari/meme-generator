@@ -93,9 +93,14 @@ function checkClickInBorder(line, clickPos) {
 //#region Canvas Settings
 
 function resizeCanvas() {
+  const { selectedImgId } = getMeme();
+  const { url: imgUrl } = findImgById(selectedImgId);
   const elContainer = document.querySelector('.canvas-container');
+  const img = new Image();
+  img.src = imgUrl;
   gElCanvas.width = elContainer.offsetWidth;
-  gElCanvas.height = elContainer.offsetWidth;
+  gElCanvas.height = (img.height * elContainer.offsetWidth) / img.width;
+  // gElCanvas.height = elContainer.offsetHeight;
   renderMeme();
 }
 

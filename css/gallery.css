@@ -1,7 +1,8 @@
 .gallery-container>img, .saved-memes-container>img {
     cursor: pointer;
-    width: 150px;
-    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: contain;
 }
 
 .gallery-container {
@@ -14,7 +15,7 @@
 
 @media (min-width: 740px) {
     .gallery-container>img, .saved-memes-container>img {
-        width: 250px;
-        height: 250px;
+        max-width: 250px;
+        max-height: 250px;
     }
 }

@@ -42,8 +42,9 @@ function renderSavedMemes() {
 }
 
 function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null) {
-  const search = document.querySelector('.search-input').value;
-  incSearchScore(search.toLowerCase());
+  const elSearch = document.querySelector('.search-input');
+  incSearchScore(elSearch.value.toLowerCase());
+  elSearch.value = '';
   document.body.className = '';
   document.body.classList.add('page-meme');
   updateMeme({ selectedImgId: imgId });
@@ -60,10 +61,11 @@ function onSavedMemeRightClick(ev, savedMemeIdx) {
 
 function renderToast(message) {
   const elToast = document.querySelector('.toast');
+  elToast.hidden = false;
   elToast.textContent = message;
   setTimeout(() => {
-    elToast.textContent = '';
-  }, 1000);
+    elToast.hidden = true;
+  }, 2000);
 }
 
 function onNavBtnClick(elBtn, func) {

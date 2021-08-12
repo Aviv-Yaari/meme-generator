@@ -5,6 +5,7 @@ function onDownload(elLink) {
     elLink.href = url;
     elLink.click();
   };
+  renderToast('Download starting...');
   renderMeme(true, download);
   renderMeme();
 }
@@ -24,6 +25,7 @@ function onShare() {
       '_blank'
     );
   };
+  renderToast('Sharing...');
   renderMeme(true, share);
   renderMeme();
 }
