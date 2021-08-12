@@ -1,4 +1,4 @@
-let gSearchScores = { funny: 5, celeb: 10, movies: 4 };
+let gSearchScores = SEARCH_SCORES_INIT;
 let gImgs = IMGS_DB;
 let gMeme = MEME_INIT;
 
@@ -101,7 +101,7 @@ function getSearchScores() {
 function incSearchScore(search) {
   if (!search) return;
   if (!gSearchScores[search]) gSearchScores[search] = 0;
-  gSearchScores[search]++;
+  if (gSearchScores[search] < 12) gSearchScores[search]++; // (max score is 12)
 }
 
 function filterImgs(search) {

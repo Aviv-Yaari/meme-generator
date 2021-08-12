@@ -51,6 +51,10 @@
   width: 1rem;
 }
 
+.tags-container {
+  gap: 10px;
+}
+
 .tags-container .tag:hover {
   cursor: pointer;
   color: tomato;

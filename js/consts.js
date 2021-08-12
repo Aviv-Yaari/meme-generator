@@ -67,3 +67,5 @@ const MEME_INIT = {
     },
   ],
 };
+
+const SEARCH_SCORES_INIT = { funny: 5, pets: 10, movies: 4, trump: 12, politics: 5, tv: 4 };
