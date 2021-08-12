@@ -1,10 +1,18 @@
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-* {
+    font-family: 'Montserrat-Regular', sans-serif;
     box-sizing: border-box;
 }
+
+html {
+    font-size: 16px;
+}
+
+h1, h2, h3, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Page display */
 
 body:not(.page-gallery) .gallery-container {
     display: none;
@@ -26,26 +34,17 @@ body:not(.page-saved-memes) .saved-memes-container {
     display: none;
 }
 
-/* 
-body.page-gallery .gallery-container {
-    display: flex;
+/*  */
+
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 
-body.page-gallery .meme-container {
-    display: none;
+.main-content {
+    background-color: #E3E3E3;
 }
-
-body.page-meme .meme-container {
-    display: flex;
-}
-
-body.page-meme .gallery-container {
-    display: none;
-}
-
-body.page-meme .header-panel {
-    display: none;
-} */
 
 button {
     border: none;

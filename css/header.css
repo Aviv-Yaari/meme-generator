@@ -1,16 +1,59 @@
 .header-top {
   color: white;
-  background-color: #ff7f00;
 }
 
 .logo-header {
+  font-size: 1rem;
   cursor: pointer;
 }
 
-.header-panel {
-  padding: 1rem 0;
+.main-header {
+  background-color: #ff7f00;
 }
 
-.main-header {
-  margin-bottom: 16px;
+.navbar .nav-item {
+  padding: 30px 8px;
+  border-radius: 0;
+}
+
+.navbar .nav-item.clicked {
+  color: black;
+}
+
+.header-panel {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-bar {
+  border-bottom: 1px solid black;
+}
+
+.search-bar input {
+  width: 16rem;
+  border: none;
+  color: #7A7A7A;
+  font-size: 1rem;
+}
+
+.search-bar input:focus {
+  outline: none;
+}
+
+.search-bar img {
+  width: 1rem;
+}
+
+@media (min-width: 740px) {
+  .navbar .nav-item {
+    padding: 30px 16px;
+  }
+  .logo-header {
+    font-size: 1.5rem;
+  }
+  .header-panel {
+    flex-direction: row;
+  }
 }

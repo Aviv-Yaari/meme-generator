@@ -1,6 +1,6 @@
 function init() {
-  // renderGallery();
-  renderMemePage(1);
+  renderGallery();
+  // renderMemePage(1);
   loadMemes();
 }
 
@@ -15,8 +15,6 @@ function renderGallery() {
     (img) => `
     <img src="${img.url}"
     alt="${img.name}"
-    width="250"
-    height="250"
     onclick="renderMemePage(${img.id})"
     >`
   );
@@ -35,8 +33,6 @@ function renderSavedMemes() {
     return `
     <img src="${meme.previewImgUrl}"
     alt="${img.name}"
-    width="250"
-    height="250"
     onclick="renderMemePage(${img.id}, true, ${index})"
     oncontextmenu="onSavedMemeRightClick(event, ${index})"
     >`;
@@ -65,4 +61,13 @@ function renderToast(message) {
   setTimeout(() => {
     elToast.textContent = '';
   }, 1000);
+}
+
+function onNavBtnClick(elBtn, func) {
+  const elNavBtns = document.querySelectorAll('.navbar .nav-item');
+  for (const elNavBtn of elNavBtns) {
+    elNavBtn.classList.remove('clicked');
+  }
+  elBtn.classList.add('clicked');
+  func();
 }

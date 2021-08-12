@@ -11,35 +11,38 @@
 
 <body onload="init()">
     <header class="main-header">
-        <section class="header-top d-flex align-items-center justify-content-between">
+        <section class="header-top d-flex align-items-center justify-content-between main-container">
             <div>
                 <h1 onclick="renderGallery()" class="logo logo-header">Uncle Aviv's Meme Generator</h1>
             </div>
-            <nav class="navbar">
-                <button class="nav-item" onclick="renderGallery()">Gallery</button>
-                <button class="nav-item" onclick="renderSavedMemes()">Saved Memes</button>
+            <nav class="navbar d-flex">
+                <button class="nav-item" onclick="onNavBtnClick(this, renderGallery)">Gallery</button>
+                <button class="nav-item" onclick="onNavBtnClick(this, renderSavedMemes)">Saved Memes</button>
                 <button class="nav-item">About</button>
             </nav>
         </section>
-        <section class="header-panel d-flex align-items-center justify-content-between">
-            <input type="search" name="search" list="search-tags">
-            <datalist id="search-tags">
-                <option value="funny">
-                <option value="comics">
-                <option value="dogs">
-            </datalist>
-            <div class="tags">
-                <span>funny</span>
-                <span>comics</span>
-                <span>dogs</span>
-                <span>books</span>
-                <span>more...</span>
-            </div>
-        </section>
     </header>
+    <section class="header-panel d-flex align-items-center justify-content-between main-container">
+        <div class="search-bar d-flex align-items-center">
+            <input type="search" name="search" list="search-tags">
+            <img src="img/search-icon.png" alt="search">
+        </div>
+        <datalist id="search-tags">
+            <option value="funny">
+            <option value="comics">
+            <option value="dogs">
+        </datalist>
+        <div class="tags">
+            <span>funny</span>
+            <span>comics</span>
+            <span>dogs</span>
+            <span>books</span>
+            <span>more...</span>
+        </div>
+    </section>
     <main class="main-content">
         <section class="toast"></section>
-        <section class="meme-container d-flex">
+        <section class="meme-container main-container d-flex">
             <div class="canvas-container">
                 <canvas class="meme-canvas"></canvas>
             </div>
@@ -91,8 +94,8 @@
                 </div>
             </div>
         </section>
-        <section class="gallery-container"></section>
-        <section class="saved-memes-container"></section>
+        <section class="gallery-container main-container"></section>
+        <section class="saved-memes-container main-container"></section>
     </main>
 
     <footer class="main-footer">
