@@ -48,10 +48,10 @@
             </div>
             <div class="meme-controls d-flex justify-content-center">
                 <div class="controls-category">
-                    <input type="text" name="txt" onkeyup="onLineUpdate(this)">
+                    <input class="meme-txt" type="text" name="txt" oninput="onLineUpdate(this)">
                 </div>
                 <section class="buttons">
-                    <div>
+                    <div class="controls-category">
                         <button class="meme-btn meme-btn-move-up" onclick="onMoveText('up')"><img
                                 src="img/controls/move-up.png"></button>
                         <button class="meme-btn meme-btn-move-down" onclick="onMoveText('down')"><img
@@ -76,8 +76,8 @@
                                 src="img/controls/align-right.png"></button>
                     </div>
                     <div class="controls-category">
-                        <input class="meme-btn" type="color" name="color" onchange="onLineUpdate(this)">
-                        <select name="fontFamily" onchange="onLineUpdate(this)">
+                        <input class="meme-btn" type="color" name="color" oninput="onLineUpdate(this)">
+                        <select class="meme-font-family" name="fontFamily" oninput="onLineUpdate(this)">
                             <option value="Tahoma">Tahoma</option>
                             <option value="Impact">Impact</option>
                             <option value="Arial">Arial</option>

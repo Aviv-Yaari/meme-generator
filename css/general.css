@@ -42,10 +42,6 @@ body:not(.page-saved-memes) .saved-memes-container {
     padding: 0 10px;
 }
 
-.main-content {
-    background-color: #E3E3E3;
-}
-
 button {
     border: none;
     background-color: #ff7f00;
@@ -59,4 +55,10 @@ button {
 button:hover {
     transition: background-color 0.4s;
     background-color: tomato;
+}
+
+.main-content {
+    background-color: #E3E3E3;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

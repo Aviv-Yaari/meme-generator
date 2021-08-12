@@ -19,21 +19,32 @@
 .meme-controls {
     flex-direction: column;
     text-align: center;
-    background-color: gainsboro;
     padding: 0;
 }
 
 .meme-btn {
     background-color: white;
     border-radius: 0.5em;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
-    margin: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .meme-btn img {
     width: 100%;
+}
+
+input.meme-txt {
+    width: 375px;
+    height: 3rem;
+    font-size: 1rem;
+}
+
+select.meme-font-family {
+    height: 3rem;
+    font-size: 1rem;
 }
 
 .share-button {
@@ -42,9 +53,13 @@
 
 .controls-category {
     margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-@media (min-width: 740px) {
+@media (min-width: 940px) {
     .canvas-container {
         width: 400px;
         height: 400px;
