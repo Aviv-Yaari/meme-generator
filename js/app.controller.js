@@ -75,8 +75,7 @@ function onNavBtnClick(elBtn, func) {
   func();
 }
 
-function onSearch(elSearch) {
-  const { value } = elSearch;
+function onSearch(value) {
   renderGallery(filterImgs(value));
 }
 
@@ -86,7 +85,9 @@ function renderTags() {
   let strHTML = '';
   for (const tag in tags) {
     const score = tags[tag];
-    strHTML += `<span style="font-size:${score * 5}px;">${tag}</span>`;
+    strHTML += `<span class="tag" onclick="onSearch('${tag}')" style="font-size:${
+      score * 5
+    }px;">${tag}</span>`;
   }
   elTagsCont.innerHTML = strHTML;
 }

@@ -51,6 +51,12 @@
   width: 1rem;
 }
 
+.tags-container .tag:hover {
+  cursor: pointer;
+  color: tomato;
+  transition: color 0.4s;
+}
+
 @media (min-width: 740px) {
   .navbar .nav-item {
     padding: 30px 16px;

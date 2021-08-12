@@ -23,7 +23,7 @@
     </header>
     <section class="header-panel d-flex align-items-center justify-content-between main-container">
         <div class="search-bar d-flex align-items-center">
-            <input class="search-input" oninput="onSearch(this)" type="search" name="search" list="search-tags">
+            <input class="search-input" oninput="onSearch(this.value)" type="search" name="search" list="search-tags">
             <img src="img/search-icon.png" alt="search">
         </div>
         <datalist id="search-tags">
@@ -32,10 +32,6 @@
             <option value="movies">
         </datalist>
         <div class="tags-container">
-            <!-- <span>funny</span>
-            <span>celeb</span>
-            <span>movies</span>
-            <span>more...</span> -->
         </div>
     </section>
     <main class="main-content">
