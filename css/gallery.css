@@ -8,6 +8,10 @@
     background-color: #E3E3E3;
 }
 
+.gallery-container, .saved-memes-container {
+    gap: 10px;
+}
+
 @media (min-width: 740px) {
     .gallery-container>img, .saved-memes-container>img {
         width: 250px;

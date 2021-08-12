@@ -18,7 +18,6 @@
             <nav class="navbar d-flex">
                 <button class="nav-item" onclick="onNavBtnClick(this, renderGallery)">Gallery</button>
                 <button class="nav-item" onclick="onNavBtnClick(this, renderSavedMemes)">Saved Memes</button>
-                <button class="nav-item">About</button>
             </nav>
         </section>
     </header>
@@ -94,16 +93,20 @@
                 </div>
             </div>
         </section>
-        <section class="gallery-container main-container"></section>
-        <section class="saved-memes-container main-container"></section>
+        <section class="gallery-container main-container d-flex flex-wrap justify-content-center"></section>
+        <section class="saved-memes-container main-container d-flex flex-wrap justify-content-center"></section>
     </main>
 
     <footer class="main-footer">
-        <section class="about d-flex align-items-center justify-content-center">
-            <div class="about-img"></div>
+        <section id="about" class="about d-flex align-items-center justify-content-center main-container">
+            <div class="about-img">
+                <img src="img/me.jpg" alt="">
+            </div>
             <div class="about-text">
                 <h3>Aviv Yaari</h3>
-                <p>I'm Aviv</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit non, at temporibus ab corporis
+                    suscipit ratione dolore quibusdam asperiores nihil? Inventore quia hic fuga aperiam error nulla
+                    perspiciatis veritatis reprehenderit.</p>
                 <div class="social-btns">
                     <div class="btn-linkedin"></div>
                     <div class="btn-facebook"></div>

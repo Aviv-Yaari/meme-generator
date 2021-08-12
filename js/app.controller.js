@@ -37,7 +37,8 @@ function renderSavedMemes() {
     oncontextmenu="onSavedMemeRightClick(event, ${index})"
     >`;
   });
-  elContainer.innerHTML = '<p>Right click to delete from saved memes</p>' + strHTML.join('');
+  renderToast('Right click a picture to delete from saved memes');
+  elContainer.innerHTML = strHTML.join('');
 }
 
 function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null) {

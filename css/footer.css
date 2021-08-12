@@ -1,3 +1,21 @@
+.about {
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.about .about-img {
+    flex-basis: 300px;
+}
+
+.about .about-text {
+    flex-basis: 600px;
+}
+
+.about .about-img img {
+    width: 100%;
+    border-radius: 50%;
+}
+
 .copyrights {
     color: white;
     background-color: #ff7f00;
