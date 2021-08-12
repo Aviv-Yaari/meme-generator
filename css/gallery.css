@@ -1,4 +1,4 @@
-.gallery-container>img {
+.gallery-container>img, .saved-memes-container>img {
     cursor: pointer;
     width: 150px;
     height: 150px;
