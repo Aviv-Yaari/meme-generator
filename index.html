@@ -21,16 +21,16 @@
             </nav>
         </section>
     </header>
-    <section class="header-panel d-flex align-items-center justify-content-between main-container">
+    <section class="header-panel d-flex main-container">
         <div class="search-bar d-flex align-items-center">
             <input class="search-input" oninput="onSearch(this.value)" type="search" name="search" list="search-tags">
+            <datalist id="search-tags">
+                <option value="funny">
+                <option value="celeb">
+                <option value="movies">
+            </datalist>
             <img src="img/search-icon.png" alt="search">
         </div>
-        <datalist id="search-tags">
-            <option value="funny">
-            <option value="celeb">
-            <option value="movies">
-        </datalist>
         <div class="tags-container d-flex flex-wrap align-items-center justify-content-center">
         </div>
     </section>
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </section>
-        <section class="gallery-container main-container d-flex flex-wrap justify-content-center"></section>
+        <section class="gallery-container main-container"></section>
         <section class="saved-memes-container main-container d-flex flex-wrap justify-content-center"></section>
     </main>
 
@@ -114,7 +114,7 @@
         </section>
         <section class="copyrights text-center">
             <h3 class="logo logo-footer">Uncle Aviv's Meme Generator</h3>
-            <p>All rights reserved, 2021</p>
+            <span>All rights reserved, 2021</span>
         </section>
     </footer>
 

@@ -4,6 +4,8 @@ function init() {
   loadMemes();
 }
 
+//#region main render functions:
+
 function renderGallery(imgs = getImgs()) {
   renderTags();
   document.body.className = '';
@@ -12,13 +14,31 @@ function renderGallery(imgs = getImgs()) {
   let strHTML;
   strHTML = imgs.map(
     (img) => `
+    <div class="img-container">
     <img src="${img.url}"
     alt="${img.name}"
     onclick="renderMemePage('${img.id}')"
-    >`
+    onmouseover="onImageHover(this, '${img.id}')"
+    onmouseleave="onImageLeave()"
+    >
+    <div class="img-info">
+    <section>
+    <span>${img.name}</span>
+    </section>
+    <section>
+    <span>tags: ${img.keywords.join(', ')}</span>
+    </section>
+    </div>
+    </div>`
   );
-  const strHTMLUpload = `<input onchange="loadImage(event, addCustomMeme)" class="input-upload" type="file" hidden />
-  <img src="img/upload.jpg" class="upload-img" onclick="document.querySelector('.input-upload').click()">`;
+  const strHTMLUpload = `
+  <input onchange="loadImage(event, addCustomMeme)" class="input-upload" type="file" hidden />
+  <div class="img-container">
+  <img
+  src="img/upload.jpg"
+  class="upload-img"
+  onclick="document.querySelector('.input-upload').click()">
+  </div>`;
   elGallery.innerHTML = strHTMLUpload + strHTML.join('');
 }
 
@@ -32,11 +52,12 @@ function renderSavedMemes() {
   strHTML = savedMemes.map((meme, index) => {
     const img = findImgById(meme.selectedImgId);
     return `
+    <div class="img-container">
     <img src="${meme.previewImgUrl}"
     alt="${img.name}"
     onclick="renderMemePage('${img.id}', true, ${index})"
-    oncontextmenu="onSavedMemeRightClick(event, ${index})"
-    >`;
+    oncontextmenu="onSavedMemeRightClick(event, ${index})">
+    </div>`;
   });
   renderToast('Right click a picture to delete from saved memes');
   elContainer.innerHTML = strHTML.join('');
@@ -82,34 +103,6 @@ function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null, isCusto
   initCanvas(isSavedMeme);
 }
 
-function onSavedMemeRightClick(ev, savedMemeIdx) {
-  ev.preventDefault();
-  deleteSavedMeme(savedMemeIdx);
-  renderSavedMemes();
-}
-
-function renderToast(message, timeout = 2000) {
-  const elToast = document.querySelector('.toast');
-  elToast.hidden = false;
-  elToast.textContent = message;
-  setTimeout(() => {
-    elToast.hidden = true;
-  }, timeout);
-}
-
-function onNavBtnClick(elBtn, func) {
-  const elNavBtns = document.querySelectorAll('.navbar .nav-item');
-  for (const elNavBtn of elNavBtns) {
-    elNavBtn.classList.remove('clicked');
-  }
-  elBtn.classList.add('clicked');
-  func();
-}
-
-function onSearch(value) {
-  renderGallery(filterImgs(value));
-}
-
 function renderTags() {
   const elTagsCont = document.querySelector('.tags-container');
   const tags = getSearchScores();
@@ -127,6 +120,36 @@ function renderTags() {
   elTagsCont.innerHTML = count < tagsLength ? strHTML + moreHTML : strHTML;
 }
 
+function renderToast(message, timeout = 2000) {
+  const elToast = document.querySelector('.toast');
+  elToast.hidden = false;
+  elToast.textContent = message;
+  setTimeout(() => {
+    elToast.hidden = true;
+  }, timeout);
+}
+
+//#endregion main render functions
+
+function onSavedMemeRightClick(ev, savedMemeIdx) {
+  ev.preventDefault();
+  deleteSavedMeme(savedMemeIdx);
+  renderSavedMemes();
+}
+
+function onNavBtnClick(elBtn, func) {
+  const elNavBtns = document.querySelectorAll('.navbar .nav-item');
+  for (const elNavBtn of elNavBtns) {
+    elNavBtn.classList.remove('clicked');
+  }
+  elBtn.classList.add('clicked');
+  func();
+}
+
+function onSearch(value) {
+  renderGallery(filterImgs(value));
+}
+
 function onLessMoreClick(num) {
   loadTags(num);
   renderTags();
@@ -139,4 +162,17 @@ function onAboutBtnClick(type) {
     github: 'https://github.com/Aviv-Yaari/',
   };
   window.open(urls[type], '_blank');
+}
+
+function onImageHover(elImg, imgId) {
+  const elMemeInfo = document.createElement('div');
+  elMemeInfo.classList.add('meme-info');
+  elMemeInfo.textContent = 'test!!';
+  elMemeInfo.hidden = false;
+  elImg.append(elMemeInfo);
+}
+
+function onImageLeave() {
+  // const elMemeInfo = document.querySelector('.meme-info');
+  // elMemeInfo.hidden = true;
 }

@@ -1,25 +1,61 @@
-.gallery-container>img, .saved-memes-container>img {
-    cursor: pointer;
-    width: 48%;
-    object-fit: cover;
-}
-
-.gallery-container {
-    background-color: #E3E3E3;
-}
-
 .gallery-container, .saved-memes-container {
-    gap: 10px;
+    background-color: #E3E3E3;
+    display: grid;
+    grid-template-columns: repeat( 2, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 5px 5px;
+}
+
+.img-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.img-container:hover .img-info {
+    transition: opacity 0.4s;
+    opacity: 100%;
+}
+
+.img-container:not(:hover) .img-info {
+    transition: opacity 0.4s;
+    opacity: 0;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img-container .img-info {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.653);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    pointer-events: none;
+}
+
+.meme-info {
+    position: relative;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.37);
+    color: white;
+    text-align: center;
+    width: 100px;
+    height: 100px;
 }
 
 @media (min-width: 740px) {
-    .gallery-container>img, .saved-memes-container>img {
-        width: 30%;
-    }
-}
-
-@media (min-width: 1000px) {
-    .gallery-container>img, .saved-memes-container>img {
-        width: 19%;
+    .gallery-container, .saved-memes-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px 20px;
     }
 }

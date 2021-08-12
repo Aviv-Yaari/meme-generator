@@ -3,6 +3,9 @@
     padding-bottom: 30px;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 .search-bar {
