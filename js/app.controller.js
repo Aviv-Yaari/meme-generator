@@ -9,7 +9,6 @@ function renderGallery(imgs = getImgs()) {
   document.body.className = '';
   document.body.classList.add('page-gallery');
   const elGallery = document.querySelector('.gallery-container');
-
   let strHTML;
   strHTML = imgs.map(
     (img) => `
@@ -18,7 +17,9 @@ function renderGallery(imgs = getImgs()) {
     onclick="renderMemePage(${img.id})"
     >`
   );
-  elGallery.innerHTML = strHTML.join('');
+  const strHTMLUpload = `<input class="input-upload" type="file" onclick="OnUploadImg()" hidden />
+  <img src="img/upload.jpg" class="upload-img" onclick="document.querySelector('.input-upload').click()">`;
+  elGallery.innerHTML = strHTMLUpload + strHTML.join('');
 }
 
 function renderSavedMemes() {
