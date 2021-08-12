@@ -1,7 +1,7 @@
 let gSearchScores = SEARCH_SCORES_INIT;
 let gImgs = IMGS_DB;
 let gMeme = MEME_INIT;
-
+let gTagsToDisp = 3;
 let gSavedMemes = [];
 
 function getImgs() {
@@ -95,7 +95,22 @@ function deleteSavedMeme(savedMemeIdx) {
 //#region Search
 
 function getSearchScores() {
-  return gSearchScores;
+  return Object.fromEntries(Object.entries(gSearchScores).slice(0, gTagsToDisp));
+}
+
+function getTagsLength() {
+  return Object.keys(gSearchScores).length;
+}
+
+function loadTags(num) {
+  const tagsCount = getTagsLength();
+  if (gTagsToDisp + num >= tagsCount) {
+    gTagsToDisp = tagsCount;
+  } else if (gTagsToDisp + num <= 0) {
+    gTagsToDisp = 0;
+  } else {
+    gTagsToDisp += num;
+  }
 }
 
 function incSearchScore(search) {

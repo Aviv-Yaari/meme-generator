@@ -84,12 +84,21 @@ function onSearch(value) {
 function renderTags() {
   const elTagsCont = document.querySelector('.tags-container');
   const tags = getSearchScores();
-  let strHTML = '';
+  const tagsLength = getTagsLength();
+  const count = Object.keys(tags).length;
+  const lessHTML = `<span class="tag tag-less" onclick="onLessMoreClick(-3)">Less...</span>`;
+  const moreHTML = `<span class="tag tag-more" onclick="onLessMoreClick(3)">More...</span>`;
+  let strHTML = count > 0 ? lessHTML : '';
   for (const tag in tags) {
     const score = tags[tag];
     strHTML += `<span class="tag" onclick="onSearch('${tag}')" style="font-size:${
       score * 5
     }px;">${tag}</span>`;
   }
-  elTagsCont.innerHTML = strHTML;
+  elTagsCont.innerHTML = count < tagsLength ? strHTML + moreHTML : strHTML;
+}
+
+function onLessMoreClick(num) {
+  loadTags(num);
+  renderTags();
 }
