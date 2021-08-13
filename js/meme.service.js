@@ -55,6 +55,7 @@ function setMeme(newMeme) {
 }
 
 function getCurrentLine() {
+  if (!gMeme.lines.length) return false;
   return gMeme.lines[gMeme.selectedLineIdx];
 }
 
@@ -72,10 +73,14 @@ function selectLine(diff) {
   if (newLineIdx >= gMeme.lines.length) {
     newLineIdx = 0;
   }
+  if (!gMeme.lines.length) {
+    newLineIdx = -1;
+  }
   gMeme.selectedLineIdx = newLineIdx;
 }
 
 function updateLine(props, lineIdx = gMeme.selectedLineIdx) {
+  if (!gMeme.lines.length) return;
   const line = gMeme.lines[lineIdx];
   gMeme.lines[lineIdx] = { ...line, ...props };
 }
@@ -96,6 +101,7 @@ function addLine(props) {
 }
 
 function removeCurrentLine() {
+  if (!gMeme.lines.length) return;
   gMeme.lines.splice(gMeme.selectedLineIdx, 1);
   selectLine(+1);
 }

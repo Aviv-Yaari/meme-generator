@@ -1,4 +1,5 @@
 function initInputs() {
+  document.querySelector('.meme-txt').value = '';
   const line = getCurrentLine();
   if (!line) return;
   const elInputs = Array.from(
@@ -10,8 +11,9 @@ function initInputs() {
 }
 
 function onLineChange() {
-  const { txt } = getCurrentLine();
-  if (!txt) {
+  const line = getCurrentLine();
+  if (!line) return;
+  if (!line.txt) {
     removeCurrentLine();
     renderToast('Empty line auto-deleted');
   }
@@ -27,7 +29,9 @@ function onLineUpdate(el) {
 }
 
 function onChangeTextSize(type) {
-  const currSize = getCurrentLine().size;
+  const line = getCurrentLine();
+  if (!line) return;
+  const { size: currSize } = line;
   if (type === 'inc') {
     updateLine({ size: currSize + 5 });
   } else {
@@ -37,7 +41,9 @@ function onChangeTextSize(type) {
 }
 
 function onMoveText(type) {
-  const { posY: currPosY } = getCurrentLine();
+  const line = getCurrentLine();
+  if (!line) return;
+  const { posY: currPosY } = line;
   if (type === 'up') {
     updateLine({ posY: currPosY - 5 });
   } else {
@@ -47,8 +53,6 @@ function onMoveText(type) {
 }
 
 function onAddLine() {
-  const { txt } = getCurrentLine();
-  if (!txt) return; // do nothing if theres a selected blank line already
   const { lines } = getMeme();
   const { width: w, height: h } = gElCanvas;
   const posX = w / 2;
@@ -75,6 +79,8 @@ function onRemoveLine() {
 }
 
 function onAlign(direction) {
+  const line = getCurrentLine();
+  if (!line) return;
   const { width: w, height: h } = gElCanvas;
   const posXs = { left: 0, center: w / 2, right: w };
   updateLine({ align: direction, posX: posXs[direction] });

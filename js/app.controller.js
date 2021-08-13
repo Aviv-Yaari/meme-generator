@@ -63,7 +63,7 @@ function renderSavedMemes() {
   elContainer.innerHTML = strHTML.join('');
 }
 
-function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null, isCustomMeme = false) {
+function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null) {
   const elSearch = document.querySelector('.search-input');
   incSearchScore(elSearch.value.toLowerCase());
   elSearch.value = '';
