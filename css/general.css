@@ -77,3 +77,16 @@ button:hover {
     background-color: rgba(165, 70, 7, 0.603);
     color: white;
 }
+
+body *:not(.img-info) {
+    animation: fade-in 0.3s;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 79%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
