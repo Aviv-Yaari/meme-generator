@@ -29,7 +29,6 @@ function onLineChange() {
 
 function onLineUpdate(el) {
   const { name, value } = el;
-  debugger;
   updateLine({ [name]: value });
   renderMeme();
 }

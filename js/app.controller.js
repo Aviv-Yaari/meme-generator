@@ -46,9 +46,8 @@ function renderSavedMemes() {
   document.body.className = '';
   document.body.classList.add('page-saved-memes');
   const elContainer = document.querySelector('.saved-memes-container');
-
-  let strHTML;
   const savedMemes = getSavedMemes();
+  let strHTML;
   strHTML = savedMemes.map((meme, index) => {
     const img = findImgById(meme.selectedImgId);
     return `
