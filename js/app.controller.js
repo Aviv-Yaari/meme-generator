@@ -99,7 +99,7 @@ function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null) {
   };
   updateMeme({ ...memeDefault, selectedImgId: imgId });
   if (isSavedMeme) setMeme(gSavedMemes[savedMemeIdx]);
-  initInputs();
+  renderInputs();
   initCanvas(isSavedMeme);
 }
 

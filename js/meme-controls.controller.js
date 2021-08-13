@@ -1,7 +1,12 @@
-function initInputs() {
-  document.querySelector('.meme-txt').value = '';
+function renderInputs() {
+  const elTextInput = document.querySelector('.meme-txt');
+  elTextInput.value = '';
   const line = getCurrentLine();
-  if (!line) return;
+  if (!line) {
+    elTextInput.style.opacity = 0;
+    return;
+  }
+  elTextInput.style.opacity = '100%';
   const elInputs = Array.from(
     document.querySelectorAll('.meme-controls >* input, .meme-controls >* select ')
   );
@@ -18,7 +23,7 @@ function onLineChange() {
     renderToast('Empty line auto-deleted');
   }
   selectLine(+1);
-  initInputs();
+  renderInputs();
   renderMeme();
 }
 
@@ -67,14 +72,14 @@ function onAddLine() {
     default:
       break;
   }
-  addLine({ posX, posY });
-  initInputs();
+  addLine({ posX, posY, txt: 'New Line' });
+  renderInputs();
   renderMeme();
 }
 
 function onRemoveLine() {
   removeCurrentLine();
-  initInputs();
+  renderInputs();
   renderMeme();
 }
 

@@ -22,11 +22,11 @@ function onDown(ev) {
     line.isDragging = true;
     setSelectedLine(index);
     renderMeme();
-    initInputs();
+    renderInputs();
   });
   if (!isLineHit) {
-    addLine({ posX: pos.x, posY: pos.y });
-    initInputs();
+    addLine({ posX: pos.x, posY: pos.y, txt: 'New Line' });
+    renderInputs();
     renderMeme();
   }
 }
