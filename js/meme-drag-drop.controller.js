@@ -34,7 +34,7 @@ function onDown(ev) {
 function onMove(ev) {
   const pos = getEvPos(ev);
   const { lines } = getMeme();
-  document.body.style.cursor = 'pointer';
+  document.body.style.cursor = 'default';
   for (const line of lines) {
     if (checkClickInBorder(line, pos)) document.body.style.cursor = 'grab';
     if (!line.isDragging) continue;
@@ -46,7 +46,7 @@ function onMove(ev) {
 
 function onUp() {
   const { lines } = getMeme();
-  document.body.style.cursor = 'pointer';
+  document.body.style.cursor = 'default';
   for (const line of lines) {
     line.isDragging = false;
   }
