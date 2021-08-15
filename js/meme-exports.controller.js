@@ -6,7 +6,7 @@ function onDownload(elLink) {
     elLink.click();
   };
   renderToast('Download starting...');
-  renderMeme(true, download);
+  renderMeme(download);
   renderMeme();
 }
 
@@ -38,6 +38,6 @@ function onShare() {
     navigator.share(shareData);
   };
   renderToast('Sharing...');
-  renderMeme(true, share);
+  renderMeme(share);
   renderMeme();
 }

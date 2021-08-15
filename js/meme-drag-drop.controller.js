@@ -2,7 +2,8 @@ function addMouseListeners() {
   gElCanvas.addEventListener('mousemove', onMove);
   gElCanvas.addEventListener('mousedown', onDown);
   gElCanvas.addEventListener('mouseup', onUp);
-  gElCanvas.addEventListener('mouseleave', onLeave);
+  gElCanvas.addEventListener('mouseleave', onUp);
+  gElCanvas.addEventListener('contextmenu', onRightClick);
 }
 
 function addTouchListeners() {
@@ -14,21 +15,25 @@ function addTouchListeners() {
 function onDown(ev) {
   const pos = getEvPos(ev);
   const { lines } = getMeme();
-  let isLineHit = false;
   lines.forEach((line, index) => {
-    if (!checkClickInBorder(line, pos)) return;
-    isLineHit = true;
+    if (checkClickInBorder(line, pos, 'border')) {
+      line.isDragging = true;
+    } else if (checkClickInBorder(line, pos, 'resizeBorder')) {
+      line.isResizing = true;
+    } else return;
     line.align = 'center';
-    line.isDragging = true;
     setSelectedLine(index);
     renderMeme();
     renderInputs();
   });
-  if (!isLineHit) {
-    addLine({ posX: pos.x, posY: pos.y, txt: 'New Line' });
-    renderInputs();
-    renderMeme();
-  }
+}
+
+function onRightClick(ev) {
+  ev.preventDefault();
+  const pos = getEvPos(ev);
+  addLine({ posX: pos.x, posY: pos.y, txt: 'New Line' });
+  renderInputs();
+  renderMeme();
 }
 
 function onMove(ev) {
@@ -36,12 +41,18 @@ function onMove(ev) {
   const { lines } = getMeme();
   document.body.style.cursor = 'default';
   for (const line of lines) {
-    if (checkClickInBorder(line, pos)) document.body.style.cursor = 'grab';
-    if (!line.isDragging) continue;
-    line.posX = pos.x;
-    line.posY = pos.y;
+    if (checkClickInBorder(line, pos, 'border')) {
+      document.body.style.cursor = 'grab';
+    }
+    if (line.isDragging) {
+      line.posX = pos.x;
+      line.posY = pos.y;
+    } else if (line.isResizing) {
+      const dist = (pos.x - line.resizeBorder.endX) / 4;
+      updateLine({ size: line.size + dist });
+    } else continue;
+    renderMeme();
   }
-  renderMeme();
 }
 
 function onUp() {
@@ -49,6 +60,7 @@ function onUp() {
   document.body.style.cursor = 'default';
   for (const line of lines) {
     line.isDragging = false;
+    line.isResizing = false;
   }
 }
 
@@ -66,8 +78,4 @@ function getEvPos(ev) {
     };
   }
   return pos;
-}
-
-function onLeave() {
-  document.body.style.cursor = 'default';
 }

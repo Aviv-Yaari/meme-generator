@@ -1,33 +1,6 @@
 let gSearchScores = SEARCH_SCORES_INIT;
 let gImgs = loadFromStorage('imgs') || IMGS_DB;
-let gMeme = {
-  selectedImgId: 1,
-  selectedLineIdx: 0,
-  lines: [
-    {
-      txt: 'Top Line',
-      size: 30,
-      align: 'center',
-      strokeColor: '#000000',
-      fillColor: '#FFFFFF',
-      fontFamily: 'Impact',
-      posX: null,
-      posY: null,
-      isDragging: false,
-    },
-    {
-      txt: 'Bottom Line',
-      size: 30,
-      align: 'center',
-      strokeColor: '#000000',
-      fillColor: '#FFFFFF',
-      fontFamily: 'Impact',
-      posX: null,
-      posY: null,
-      isDragging: false,
-    },
-  ],
-};
+let gMeme = JSON.parse(JSON.stringify(MEME_INIT));
 let gTagsToDisp = 3;
 let gSavedMemes = [];
 

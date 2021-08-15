@@ -24,22 +24,21 @@ function renderDefaultLines() {
   });
 }
 
-function renderMeme(isExport = false, after = null) {
+function renderMeme(exportFunc = null) {
+  // if isDragging - lighten the function to require less resources
   const meme = getMeme();
   const imgData = findImgById(meme.selectedImgId);
   const elImg = new Image();
   elImg.src = imgData.url;
   elImg.addEventListener('load', () => {
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
+    const isExport = exportFunc ? true : false;
     loadText(meme.lines, isExport);
-    if (isExport && after) {
-      after();
-    }
+    if (exportFunc) exportFunc();
   });
 }
 
 function loadText(lines, isExport) {
-  // const { width: w, height: h } = gElCanvas;
   lines.forEach((line, index) => {
     gCtx.lineWidth = 4;
     gCtx.fillStyle = line.fillColor;
@@ -50,8 +49,10 @@ function loadText(lines, isExport) {
     gCtx.strokeText(line.txt, line.posX, line.posY);
     gCtx.fillText(line.txt, line.posX, line.posY);
     line.border = calcLineBorder(line);
+    line.resizeBorder = calcLineResizeBorder(line);
     if (getMeme().selectedLineIdx === index && !isExport) {
       renderBorderAround(line);
+      renderResizeBorder(line);
     }
   });
 }
@@ -76,6 +77,11 @@ function calcLineBorder(line) {
   };
 }
 
+function calcLineResizeBorder(line) {
+  const { endX, endY } = line.border;
+  return { startX: endX, startY: endY, endY: endY + 20, endX: endX + 20 };
+}
+
 function renderBorderAround(line) {
   const { startX, startY, endX, endY } = line.border;
   gCtx.strokeStyle = 'white';
@@ -83,8 +89,18 @@ function renderBorderAround(line) {
   gCtx.strokeRect(startX, startY, endX - startX, endY - startY);
 }
 
-function checkClickInBorder(line, clickPos) {
-  const { startX, startY, endX, endY } = line.border;
+function renderResizeBorder(line) {
+  const { startX, startY } = line.resizeBorder;
+  const img = new Image();
+  img.src = 'img/resize-icon.png';
+  img.onload = () => {
+    gCtx.fillRect(startX, startY, 20, 20);
+    gCtx.drawImage(img, startX, startY, 20, 20);
+  };
+}
+
+function checkClickInBorder(line, clickPos, type) {
+  const { startX, startY, endX, endY } = line[type];
   if (clickPos.x > startX && clickPos.x < endX && clickPos.y > startY && clickPos.y < endY) {
     return true;
   }

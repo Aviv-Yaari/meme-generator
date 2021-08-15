@@ -68,37 +68,7 @@ function renderMemePage(imgId, isSavedMeme = false, savedMemeIdx = null) {
   elSearch.value = '';
   document.body.className = '';
   document.body.classList.add('page-meme');
-  // Had to repeat myself here in declaring the meme default (also declared in meme service),
-  // could not find a better solution that wasnt messier.
-  const memeDefault = {
-    selectedImgId: 1,
-    selectedLineIdx: 0,
-    lines: [
-      {
-        txt: 'Top Line',
-        size: 30,
-        align: 'center',
-        strokeColor: '#000000',
-        fillColor: '#FFFFFF',
-        fontFamily: 'Impact',
-        posX: null,
-        posY: null,
-        isDragging: false,
-      },
-      {
-        txt: 'Bottom Line',
-        size: 30,
-        align: 'center',
-        strokeColor: '#000000',
-        fillColor: '#FFFFFF',
-        fontFamily: 'Impact',
-        posX: null,
-        posY: null,
-        isDragging: false,
-      },
-    ],
-  };
-  updateMeme({ ...memeDefault, selectedImgId: imgId });
+  updateMeme({ ...JSON.parse(JSON.stringify(MEME_INIT)), selectedImgId: imgId });
   if (isSavedMeme) setMeme(gSavedMemes[savedMemeIdx]);
   renderInputs();
   initCanvas(isSavedMeme);
