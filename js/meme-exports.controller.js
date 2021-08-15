@@ -11,9 +11,12 @@ function onDownload(elLink) {
 }
 
 function onSave() {
-  const img = gElCanvas.toDataURL('image/jpeg', 0.1);
-  saveMeme(img);
+  renderMeme(() => {
+    const img = gElCanvas.toDataURL('image/jpeg', 0.4);
+    saveMeme(img);
+  });
   renderToast('Meme Saved!');
+  renderMeme();
 }
 
 function onShare() {

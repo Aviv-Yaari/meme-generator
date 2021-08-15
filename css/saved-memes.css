@@ -1,3 +1,15 @@
 .saved-memes-container>img {
     cursor: pointer;
 }
+
+.saved-memes-container .img-container .btn-remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15%;
+    background-color: red;
+}
+
+.saved-memes-container .img-container .btn-remove img {
+    width: 100%;
+}

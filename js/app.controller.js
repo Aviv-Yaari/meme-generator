@@ -54,11 +54,12 @@ function renderSavedMemes() {
     <div class="img-container">
     <img src="${meme.previewImgUrl}"
     alt="${img.name}"
-    onclick="renderMemePage('${img.id}', true, ${index})"
-    oncontextmenu="onSavedMemeRightClick(event, ${index})">
+    onclick="renderMemePage('${img.id}', true, ${index})">
+    <button class="btn-remove" onclick="onDeleteSavedMeme(event, ${index})">
+    <img src="img/trash.png" />
+    </button>
     </div>`;
   });
-  renderToast('Right click a picture to delete from saved memes');
   elContainer.innerHTML = strHTML.join('');
 }
 
@@ -102,8 +103,8 @@ function renderToast(message, timeout = 2000) {
 
 //#endregion main render functions
 
-function onSavedMemeRightClick(ev, savedMemeIdx) {
-  ev.preventDefault();
+function onDeleteSavedMeme(ev, savedMemeIdx) {
+  ev.stopPropagation();
   deleteSavedMeme(savedMemeIdx);
   renderSavedMemes();
 }
