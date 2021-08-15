@@ -1,11 +1,15 @@
 function renderInputs() {
   const elTextInput = document.querySelector('.meme-txt');
-  elTextInput.value = '';
+  const elStrokeContainer = document.querySelector('.meme-btn-stroke-color');
+  const elFillContainer = document.querySelector('.meme-btn-fill-color');
   const line = getCurrentLine();
+  elTextInput.value = '';
   if (!line) {
     elTextInput.style.opacity = 0;
     return;
   }
+  elStrokeContainer.style.backgroundColor = line.strokeColor;
+  elFillContainer.style.backgroundColor = line.fillColor;
   elTextInput.style.opacity = '100%';
   const elInputs = Array.from(
     document.querySelectorAll('.meme-controls >* input, .meme-controls >* select ')
@@ -31,6 +35,7 @@ function onLineUpdate(el) {
   const { name, value } = el;
   updateLine({ [name]: value });
   renderMeme();
+  renderInputs();
 }
 
 function onChangeTextSize(type) {

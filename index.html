@@ -71,7 +71,14 @@
                                 src="img/controls/align-right.png"></button>
                     </div>
                     <div class="controls-category">
-                        <input class="meme-btn" type="color" name="color" oninput="onLineUpdate(this)">
+                        <div class="meme-btn meme-btn-stroke-color">
+                            <input type="color" name="strokeColor" oninput="onLineUpdate(this)">
+                            <img src="img/controls/stroke.png">
+                        </div>
+                        <div class="meme-btn meme-btn-fill-color">
+                            <input type="color" name="fillColor" oninput="onLineUpdate(this)">
+                            <img src="img/controls/fill.png">
+                        </div>
                         <select class="meme-font-family" name="fontFamily" onchange="onLineUpdate(this)">
                             <option value="Tahoma">Tahoma</option>
                             <option value="Impact">Impact</option>

@@ -35,6 +35,17 @@
     width: 100%;
 }
 
+.meme-btn-stroke-color, .meme-btn-fill-color {
+    position: relative;
+}
+
+.meme-btn-stroke-color input, .meme-btn-fill-color input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 input.meme-txt {
     width: 375px;
     height: 3rem;

@@ -42,8 +42,8 @@ function loadText(lines, isExport) {
   // const { width: w, height: h } = gElCanvas;
   lines.forEach((line, index) => {
     gCtx.lineWidth = 4;
-    gCtx.fillStyle = 'white';
-    gCtx.strokeStyle = line.color;
+    gCtx.fillStyle = line.fillColor;
+    gCtx.strokeStyle = line.strokeColor;
     gCtx.font = `${line.size}px ${line.fontFamily}`;
     gCtx.textAlign = line.align;
     gCtx.textBaseline = 'middle';

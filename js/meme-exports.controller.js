@@ -27,7 +27,7 @@ function onShare() {
     const dataUrl = gElCanvas.toDataURL();
     const blob = await (await fetch(dataUrl)).blob();
     const filesArray = [
-      new File([blob], 'animation.png', {
+      new File([blob], 'meme.png', {
         type: blob.type,
         lastModified: new Date().getTime(),
       }),
