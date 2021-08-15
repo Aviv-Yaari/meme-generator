@@ -96,9 +96,3 @@ function onAlign(direction) {
   updateLine({ align: direction, posX: posXs[direction] });
   renderMeme();
 }
-
-function onSave() {
-  const img = gElCanvas.toDataURL('image/jpeg', 0.1);
-  saveMeme(img);
-  renderToast('Meme Saved!');
-}

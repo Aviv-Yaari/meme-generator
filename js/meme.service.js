@@ -94,7 +94,7 @@ function loadMemes() {
 
 function saveMeme(img) {
   gMeme.previewImgUrl = img;
-  gSavedMemes.push({ ...gMeme });
+  gSavedMemes.push(JSON.parse(JSON.stringify(gMeme)));
   saveToStorage('saved-memes', gSavedMemes);
 }
 

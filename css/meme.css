@@ -31,6 +31,10 @@
     margin-top: 10px;
 }
 
+.meme-btn input[type="color"] {
+    cursor: pointer;
+}
+
 .meme-btn img {
     width: 100%;
 }

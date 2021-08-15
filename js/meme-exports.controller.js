@@ -10,6 +10,12 @@ function onDownload(elLink) {
   renderMeme();
 }
 
+function onSave() {
+  const img = gElCanvas.toDataURL('image/jpeg', 0.1);
+  saveMeme(img);
+  renderToast('Meme Saved!');
+}
+
 function onShare() {
   const share = async () => {
     // const url = gElCanvas.toDataURL('image/jpeg');
