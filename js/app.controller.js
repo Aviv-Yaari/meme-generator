@@ -56,7 +56,7 @@ function renderSavedMemes() {
     alt="${img.name}"
     onclick="renderMemePage('${img.id}', true, ${index})">
     <button class="btn-remove" onclick="onDeleteSavedMeme(event, ${index})">
-    <img src="img/trash.png" />
+    <img src="img/remove.svg" />
     </button>
     </div>`;
   });

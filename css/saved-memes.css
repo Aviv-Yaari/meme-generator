@@ -4,12 +4,19 @@
 
 .saved-memes-container .img-container .btn-remove {
     position: absolute;
+    border-radius: 0;
     top: 0;
     right: 0;
     width: 15%;
+    min-width: 35px;
     background-color: red;
+    transition: background-color 0.4s;
 }
 
-.saved-memes-container .img-container .btn-remove img {
-    width: 100%;
+.saved-memes-container .img-container .btn-remove:hover {
+    background-color: brown;
 }
+
+/* .saved-memes-container .img-container .btn-remove img {
+    width: 100%;
+} */
